@@ -10,14 +10,12 @@ Added new changes for Sequence Labelling include
 
 ### Restructuring and Enhancements
 
-The code has been restructured for better clarity and ease of modification. This includes:
-
-- Improved code readability by restructuring and organizing the annotation statistics display.
-- Improved backend functionality for capturing and storing annotation statistics in the database.
+- Improved code readability through comments and restructuring.
+- Added backend functionality for capturing and storing annotation statistics in the database.
 
 ### New Feature: Sliding Button for Statistics Display
 
-A sliding button has been added to the user interface to enable and disable the viewing of these additional statistics in the Sequence Labelling task page. 
+A sliding button has been added to the user interface of the Sequence Labelling task page to enable and disable the viewing of these additional statistics. 
 
 ## Backend Database Changes
 
@@ -29,4 +27,4 @@ The backend database has been modified to accommodate the storage of additional 
 
 ### Exporting Annotation Statistics
 
-A future plan includes the addition of an option to export these statistics when downloading annotated labels, and looking at other tasks for inclusion of these statistics. 
+A future plan includes the addition of an option to export these statistics when downloading annotated labels, and looking at other tasks for inclusion of these statistics and other useful metrics. 

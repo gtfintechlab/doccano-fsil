@@ -5,7 +5,7 @@ export class APISpanRepository extends AnnotationRepository<Span> {
   labelName = 'spans'
 
   toModel(item: { [key: string]: any }): Span {
-    return new Span(item.id, item.label, item.user, item.start_offset, item.end_offset)
+    return new Span(item.id, item.label, item.user, item.start_offset, item.end_offset,item.changed)
   }
 
   toPayload(item: Span): { [key: string]: any } {
@@ -14,7 +14,8 @@ export class APISpanRepository extends AnnotationRepository<Span> {
       label: item.label,
       user: item.user,
       start_offset: item.startOffset,
-      end_offset: item.endOffset
+      end_offset: item.endOffset,
+      changed:item.changed
     }
   }
 }

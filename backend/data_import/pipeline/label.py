@@ -2,7 +2,7 @@ import abc
 import uuid
 from typing import Any, Optional
 
-from pydantic import UUID4, BaseModel, NonNegativeInt, constr, root_validator
+from pydantic import UUID4, BaseModel, NonNegativeInt, constr, root_validator,StrictBool
 
 from .label_types import LabelTypes
 from examples.models import Example
@@ -65,6 +65,7 @@ class SpanLabel(Label):
     label: constr(min_length=1)  # type: ignore
     start_offset: NonNegativeInt
     end_offset: NonNegativeInt
+    changed: StrictBool
 
     def __lt__(self, other):
         return self.start_offset < other.start_offset
@@ -78,8 +79,9 @@ class SpanLabel(Label):
 
     @classmethod
     def parse(cls, example_uuid: UUID4, obj: Any):
+        print("in parse")
         if isinstance(obj, list) or isinstance(obj, tuple):
-            columns = ["start_offset", "end_offset", "label"]
+            columns = ["start_offset", "end_offset", "label","changed"]
             obj = zip(columns, obj)
             return cls(example_uuid=example_uuid, **dict(obj))
         elif isinstance(obj, dict):
@@ -97,6 +99,7 @@ class SpanLabel(Label):
             start_offset=self.start_offset,
             end_offset=self.end_offset,
             label=types[self.label],
+            changed = self.changed,
         )
 
 
@@ -133,6 +136,7 @@ class RelationLabel(Label):
         return RelationType(text=self.type, project=project)
 
     def create(self, user, example: Example, types: LabelTypes, **kwargs):
+        print("here")
         return RelationModel(
             uuid=self.uuid,
             user=user,

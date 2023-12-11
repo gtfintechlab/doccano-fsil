@@ -4,7 +4,8 @@ export class Span {
     private _label: number,
     readonly user: number,
     readonly startOffset: number,
-    readonly endOffset: number
+    readonly endOffset: number,
+    public changed:boolean,
   ) {}
 
   get label(): number {
@@ -13,5 +14,7 @@ export class Span {
 
   changeLabel(label: number) {
     this._label = label
+    this.changed = true
+    // this._changed = true
   }
 }

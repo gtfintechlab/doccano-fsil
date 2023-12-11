@@ -11,7 +11,7 @@ class TaskStatus(APIView):
         task = AsyncResult(kwargs["task_id"])
         ready = task.ready()
         error = ready and not task.successful()
-
+        
         return Response(
             {
                 "ready": ready,

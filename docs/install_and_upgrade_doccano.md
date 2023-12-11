@@ -241,10 +241,20 @@ python manage.py runserver
 
 In another terminal, you need to run Celery to use import/export dataset feature:
 
+
 ```bash
 cd doccano/backend
 celery --app=config worker --loglevel=INFO --concurrency=1
 ```
+
+For Windows run the 
+
+```bash
+cd doccano/backend
+pip install eventlet
+celery --app=config worker --loglevel=INFO --concurrency=1 -P eventlet 
+```
+
 
 After you change the code, don't forget to run [mypy](https://mypy.readthedocs.io/en/stable/index.html), [flake8](https://flake8.pycqa.org/en/latest/), [black](https://github.com/psf/black), and [isort](https://github.com/PyCQA/isort). These ensure code consistency. To run them, just run the following commands:
 

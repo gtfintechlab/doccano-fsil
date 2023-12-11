@@ -24,9 +24,10 @@ export class SequenceLabelingApplicationService extends AnnotationApplicationSer
     exampleId: number,
     labelId: number,
     startOffset: number,
-    endOffset: number
+    endOffset: number,
+    changed : boolean
   ): Promise<void> {
-    const item = new Span(0, labelId, 0, startOffset, endOffset)
+    const item = new Span(0, labelId, 0, startOffset, endOffset,changed)
     try {
       await this.repository.create(projectId, exampleId, item)
     } catch (e: any) {

@@ -6,6 +6,8 @@ export class SpanDTO {
   user: number
   startOffset: number
   endOffset: number
+  time: number
+  changed : boolean
 
   constructor(item: Span) {
     this.id = item.id
@@ -13,5 +15,7 @@ export class SpanDTO {
     this.user = item.user
     this.startOffset = item.startOffset
     this.endOffset = item.endOffset
+    this.time = 0
+    this.changed = false
   }
 }

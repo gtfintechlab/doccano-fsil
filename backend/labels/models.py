@@ -46,6 +46,8 @@ class Span(Label):
     label = models.ForeignKey(to=SpanType, on_delete=models.CASCADE)
     start_offset = models.IntegerField()
     end_offset = models.IntegerField()
+    changed = False
+    interaction_time = 0
 
     def __str__(self):
         text = self.example.text[self.start_offset : self.end_offset]
@@ -76,6 +78,7 @@ class Span(Label):
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         self.full_clean()
+        print(self.changed)
         super().save(force_insert, force_update, using, update_fields)
 
     def is_overlapping(self, other: "Span"):

@@ -1,6 +1,31 @@
 <template>
   <layout-text v-if="doc.id" v-shortkey="shortKeys" @shortkey="changeSelectedLabel">
     <template #header>
+
+        <div>
+            <v-container class="maxwidth">
+            <v-tooltip color="black" top>
+                <template v-slot:activator="{ on, attrs }">
+                <div
+                    v-bind="attrs"
+                    v-on="on"
+                    style="width:min-content;"
+                >
+                    
+                <v-switch 
+                v-model="toggleDev"
+                :prepend-icon = "mdiAccountCogOutline"    
+                >
+                    </v-switch>
+                </div>
+                </template>
+                <div>
+                Display Additional Statistics
+                </div>
+            </v-tooltip>
+            </v-container>
+        </div>
+        
       <toolbar-laptop
         :doc-id="doc.id"
         :enable-auto-labeling.sync="enableAutoLabeling"
@@ -28,6 +53,7 @@
             :grapheme-mode="project.enableGraphemeMode"
             :selected-label="selectedLabel"
             :relation-mode="relationMode"
+            :toggle-dev = "toggleDev"
             @addEntity="addSpan"
             @addRelation="addRelation"
             @click:entity="updateSpan"
@@ -86,7 +112,7 @@
 </template>
 
 <script>
-import { mdiChevronDown, mdiChevronUp } from '@mdi/js'
+import { mdiChevronDown, mdiChevronUp,mdiAccountCogOutline} from '@mdi/js'
 import _ from 'lodash'
 import { mapGetters } from 'vuex'
 import LayoutText from '@/components/tasks/layout/LayoutText'
@@ -121,13 +147,15 @@ export default {
       relationTypes: [],
       project: {},
       enableAutoLabeling: false,
+      toggleDev : false,
       rtl: false,
       selectedLabelIndex: null,
       progress: {},
       relationMode: false,
       showLabelTypes: true,
       mdiChevronUp,
-      mdiChevronDown
+      mdiChevronDown,
+      mdiAccountCogOutline
     }
   },
 
@@ -215,7 +243,9 @@ export default {
         this.spanTypes = await this.$services.spanType.list(this.projectId)
       }
     },
-
+    togglebutton(){
+        toggleDev = !toggleDev
+    },
     async list(docId) {
       const annotations = await this.$services.sequenceLabeling.list(this.projectId, docId)
       const relations = await this.$services.sequenceLabeling.listRelations(this.projectId, docId)
@@ -232,13 +262,14 @@ export default {
       await this.list(this.doc.id)
     },
 
-    async addSpan(startOffset, endOffset, labelId) {
+    async addSpan(startOffset, endOffset, labelId,changed = false) {
       await this.$services.sequenceLabeling.create(
         this.projectId,
         this.doc.id,
         labelId,
         startOffset,
-        endOffset
+        endOffset,
+        changed
       )
       await this.list(this.doc.id)
     },
@@ -299,6 +330,7 @@ export default {
     async confirm() {
       await this.$services.example.confirm(this.projectId, this.doc.id)
       await this.$fetch()
+      console.log("confirm")
       this.updateProgress()
     },
 

@@ -27,7 +27,12 @@ export abstract class AnnotationRepository<T> {
     const url = `${this.baseUrl(projectId, exampleId)}/${labelId}`
     const payload = this.toPayload(item)
     const response = await this.request.patch(url, payload)
-    return this.toModel(response.data)
+    
+    const updatedResponse = {
+        ...response.data,
+        changed: true,
+      }
+    return this.toModel(updatedResponse)
   }
 
   public async delete(projectId: string, exampleId: number, labelId: number): Promise<void> {

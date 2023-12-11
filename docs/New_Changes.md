@@ -17,7 +17,7 @@ The code has been restructured for better clarity and ease of modification. This
 
 ### New Feature: Sliding Button for Statistics Display
 
-A sliding button has been added to the user interface to enable and disable the viewing of these additional statistics. 
+A sliding button has been added to the user interface to enable and disable the viewing of these additional statistics in the Sequence Labelling task page. 
 
 ## Backend Database Changes
 

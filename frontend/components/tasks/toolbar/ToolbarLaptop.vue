@@ -1,5 +1,6 @@
 <template>
   <v-toolbar class="toolbar-control" dense flat>
+    
     <v-row no-gutters>
       <v-btn-toggle>
         <button-review :is-reviewd="isReviewd" @click:review="$emit('click:review')" />
@@ -19,6 +20,7 @@
         </v-dialog>
 
         <button-auto-labeling @click:auto="dialogAutoLabeling = true" />
+        
         <v-dialog v-model="dialogAutoLabeling">
           <form-auto-labeling
             :is-enabled="enableAutoLabeling"
@@ -56,6 +58,7 @@
         @click:jump="updatePage($event)"
       />
     </v-row>
+    
   </v-toolbar>
 </template>
 
@@ -75,6 +78,7 @@ import FormClearLabel from './forms/FormClearLabel.vue'
 import FormComment from './forms/FormComment.vue'
 import FormGuideline from './forms/FormGuideline.vue'
 import FormKeyboardShortcut from './forms/FormKeyboardShortcut.vue'
+import { ExampleDTO } from '@/services/application/example/exampleData'
 
 export default Vue.extend({
   components: {
@@ -116,9 +120,22 @@ export default Vue.extend({
     total: {
       type: Number,
       default: 1
+    },
+    timeanot : {
+        type : Number,
+        default : 1
+    },
+    // eslint-disable-next-line vue/require-default-prop
+    example : {
+        type : ExampleDTO
+    },
+    projId : {
+        type : Number,
+        default : 1
     }
   },
-
+  setup(){
+  },
   data() {
     return {
       dialogAutoLabeling: false,
@@ -147,6 +164,7 @@ export default Vue.extend({
 
   methods: {
     updatePage(page: number) {
+        this.$emit('messageFromChild',this.timeanot,this.example,this.projId)
       this.$router.push({
         query: {
           page: page.toString(),
@@ -155,6 +173,7 @@ export default Vue.extend({
           q: this.$route.query.q
         }
       })
+      
     },
 
     changeFilter(isChecked: string) {

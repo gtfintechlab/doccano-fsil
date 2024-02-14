@@ -17,5 +17,6 @@ class Examples:
         return uuid in self.uuid_to_example
 
     def save(self):
+        print(self.examples)
         examples = Example.objects.bulk_create(self.examples)
         self.uuid_to_example = {example.uuid: example for example in examples}

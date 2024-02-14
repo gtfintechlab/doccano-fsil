@@ -40,6 +40,7 @@ class ExampleMaker:
         examples = []
         for row in df_with_data_column.to_dict(orient="records"):
             line_num = row.pop(LINE_NUMBER_COLUMN, 0)
+            print(row)
             row[DEFAULT_TEXT_COLUMN] = row.pop(self.column_data)  # Rename column for parsing
             try:
                 data = self.data_class.parse(**row)

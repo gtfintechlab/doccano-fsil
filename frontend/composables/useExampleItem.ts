@@ -42,10 +42,22 @@ export const useExampleItem = () => {
     updateProgress(projectId)
   }
 
+  const updateTime = async (projectId : string, example : ExampleDTO) => {
+    await exampleService.update(projectId,example)
+    // const checkEx = await exampleService.findById(projectId,example.id)
+    // console.log(checkEx)
+  }
+
+  const fetchExampleById = async(projectId: string, exampleId : string) =>{
+    const ex =  await exampleService.findById(projectId,exampleId)
+    return ex
+  }
   return {
     state,
     confirm,
     getExample,
-    updateProgress
+    updateProgress,
+    updateTime,
+    fetchExampleById
   }
 }

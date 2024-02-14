@@ -12,7 +12,10 @@ function toModel(item: { [key: string]: any }): ExampleItem {
     item.filename,
     item.is_confirmed,
     item.upload_name,
-    item.assignments
+    item.assignments,
+    item.time_annotated,
+    item.confidence,
+    item.changed
   )
 }
 
@@ -22,7 +25,10 @@ function toPayload(item: ExampleItem): { [key: string]: any } {
     text: item.text,
     meta: item.meta,
     annotation_approver: item.annotationApprover,
-    comment_count: item.commentCount
+    comment_count: item.commentCount,
+    time_annotated : item.time_annotated,
+    confidence : item.confidence,
+    changed : item.changed
   }
 }
 

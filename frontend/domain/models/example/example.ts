@@ -14,7 +14,10 @@ export class ExampleItem {
     readonly fileUrl: string,
     readonly isConfirmed: boolean,
     readonly filename: string,
-    readonly assignments: Assignment[]
+    readonly assignments: Assignment[],
+    readonly time_annotated : number,
+    readonly confidence : boolean,
+    readonly changed : boolean,
   ) {}
 
   get url() {

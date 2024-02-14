@@ -42,6 +42,7 @@ export const useTeacherList = (repository: any) => {
       await annotateLabel(projectId, exampleId, labelId)
     }
   }
+  const toggleDev = false
 
   return {
     state,
@@ -50,6 +51,7 @@ export const useTeacherList = (repository: any) => {
     annotateOrRemoveLabel,
     removeTeacher,
     clearTeacherList,
-    autoLabel
+    autoLabel,
+    toggleDev
   }
 }

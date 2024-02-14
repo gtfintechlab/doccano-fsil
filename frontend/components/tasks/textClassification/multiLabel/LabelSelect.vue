@@ -66,6 +66,7 @@ export default {
         return this.labels.filter((item) => labelIds.includes(item.id))
       },
       set(newValue) {
+        console.log("HERE")
         if (newValue.length > this.annotations.length) {
           const label = newValue[newValue.length - 1]
           if (typeof label === 'object') {

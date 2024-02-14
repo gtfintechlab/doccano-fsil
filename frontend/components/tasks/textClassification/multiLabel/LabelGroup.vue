@@ -12,6 +12,27 @@
         {{ item.suffixKey }}
       </v-avatar>
     </v-chip>
+    <!-- <v-container>
+    <v-tooltip color="black" right>
+                <template #activator="{ on, attrs }">
+                <div
+                    v-bind="attrs"
+                    style="width:min-content;"
+                    v-on="on"
+                >
+                <v-switch 
+                :append-icon = "mdiClipboardCheck"  
+                color = "green"  
+                checked = "on"
+                >
+                </v-switch>
+                </div>
+                </template>
+                <div>
+                Confidence Check
+                </div>
+            </v-tooltip>
+    </v-container> -->
   </v-chip-group>
 </template>
 
@@ -42,6 +63,9 @@ export default {
   methods: {
     addOrRemove(indexes) {
       if (indexes.length > this.annotatedLabel.length) {
+        if(this.annotatedLabel.length !== 0){
+            this.$emit("changeAnnotation")
+        }
         const index = _.difference(indexes, this.annotatedLabel)
         const label = this.labels[index]
         this.add(label)

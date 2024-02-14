@@ -250,8 +250,8 @@ celery --app=config worker --loglevel=INFO --concurrency=1
 For Windows run the 
 
 ```bash
-cd doccano/backend
 pip install eventlet
+cd doccano/backend
 celery --app=config worker --loglevel=INFO --concurrency=1 -P eventlet 
 ```
 

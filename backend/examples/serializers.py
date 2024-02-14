@@ -65,6 +65,9 @@ class ExampleSerializer(serializers.ModelSerializer):
             "upload_name",
             "score",
             "assignments",
+            "time_annotated",
+            "confidence",
+            "changed",
         ]
         read_only_fields = ["filename", "is_confirmed", "upload_name", "assignments"]
 

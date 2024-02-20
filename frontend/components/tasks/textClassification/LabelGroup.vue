@@ -28,6 +28,7 @@
                 :append-icon = "mdiClipboardCheck"  
                 color = "green"  
                 checked = "on"
+                disabled
                 @change = "callForChange"
                 >
                 </v-switch>

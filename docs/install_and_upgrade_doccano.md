@@ -174,6 +174,9 @@ If you want to build a local image, run:
 docker build -t doccano:latest . -f docker/Dockerfile
 ```
 
+```bash
+docker build -t doccano:latest . -f docker/Dockerfile.nginx
+```
 ### Use Flower
 
 Set `FLOWER_BASIC_AUTH` environment variable and open `5555` port. The variable accepts _user:password_ pairs separated by a comma.
@@ -205,6 +208,7 @@ cp .env.example .env
 # Edit with the editor of your choice, in this example nano is used (ctrl+x, then "y" to save).
 nano .env
 docker-compose -f docker-compose.prod.yml --env-file .env up
+docker-compose -f docker-compose-dev.yml --env-file .env.example up
 ```
 
 You can override the default setting by rewriting the `.env` file. See [./docker/.env.example](https://github.com/doccano/doccano/blob/master/docker/.env.example) in detail.

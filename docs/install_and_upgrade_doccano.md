@@ -207,7 +207,7 @@ cd docker
 cp .env.example .env
 # Edit with the editor of your choice, in this example nano is used (ctrl+x, then "y" to save).
 nano .env
-docker-compose -f docker-compose.prod.yml --env-file .env up
+docker-compose -f docker-compose.prod.yml --env-file .env.example up
 docker-compose -f docker-compose-dev.yml --env-file .env.example up
 ```
 
@@ -238,7 +238,7 @@ Second, set up the database and run the development server. Doccano uses [Django
 
 ```bash
 python manage.py migrate
-python manage.py create_roles
+python manage.py create_roles   
 python manage.py create_admin --noinput --username "admin" --email "admin@example.com" --password "password"
 python manage.py runserver
 ```

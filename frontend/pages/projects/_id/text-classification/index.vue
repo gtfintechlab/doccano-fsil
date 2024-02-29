@@ -17,7 +17,6 @@
                 v-model="toggleddev"
                 :prepend-icon = "mdiAccountCogOutline"  
                 color = "deep-orange" 
-                disabled 
                 >
                     </v-switch>
                 </div>

@@ -237,6 +237,7 @@ poetry shell
 Second, set up the database and run the development server. Doccano uses [Django](https://www.djangoproject.com/) and [Django Rest Framework](https://www.django-rest-framework.org/) as a backend. We can set up them by using Django command:
 
 ```bash
+cd doccano-fsil/backend
 python manage.py migrate
 python manage.py create_roles   
 python manage.py create_admin --noinput --username "admin" --email "admin@example.com" --password "password"
@@ -244,7 +245,6 @@ python manage.py runserver
 ```
 
 In another terminal, you need to run Celery to use import/export dataset feature:
-
 
 ```bash
 cd doccano/backend
@@ -255,10 +255,14 @@ For Windows run the
 
 ```bash
 pip install eventlet
-cd doccano/backend
+cd doccano-fsil/backend
 celery --app=config worker --loglevel=INFO --concurrency=1 -P eventlet 
 ```
 
+```bash
+cd doccano-fsil/frontend
+yarn dev
+```
 
 After you change the code, don't forget to run [mypy](https://mypy.readthedocs.io/en/stable/index.html), [flake8](https://flake8.pycqa.org/en/latest/), [black](https://github.com/psf/black), and [isort](https://github.com/PyCQA/isort). These ensure code consistency. To run them, just run the following commands:
 

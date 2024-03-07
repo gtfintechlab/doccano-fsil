@@ -3,10 +3,11 @@
 set -o errexit
 set -o nounset
 
-cd /backend
+cd /doccano/backend
 
 (
-  echo "Waiting for database"
+  echo "Current directory: $(pwd)"
+  ls
   python manage.py wait_for_db
 
   echo "Starting flower"

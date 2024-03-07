@@ -175,7 +175,6 @@ export default Vue.extend({
       })
       
     },
-
     changeFilter(isChecked: string) {
       this.$router.push({
         query: {

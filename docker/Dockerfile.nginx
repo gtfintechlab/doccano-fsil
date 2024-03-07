@@ -27,4 +27,4 @@ RUN chown -R doccano:doccano /var/cache/nginx \
 
 EXPOSE 8080
 
-USER doccano:doccano
+USER doccano

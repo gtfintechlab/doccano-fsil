@@ -18,7 +18,7 @@
         @contextmenu:entity="deleteEntity"
         @contextmenu:relation="deleteRelation"
       />
-      <v-card v-if="toggleDev" class="statistics-card"
+      <!-- <v-card v-if="toggleDev" class="statistics-card"
         style = "  background-color: #f5f5f5;
         border: 1px solid #ccc;
         padding: 15px;
@@ -48,7 +48,7 @@
             {{ (entityChanged[entity.id] || false).toString() }}
             </div>
         </template>
-      </v-card>
+      </v-card> -->
       <labeling-menu
         :opened="entityMenuOpened"
         :x="x"

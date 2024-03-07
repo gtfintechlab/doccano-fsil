@@ -4,7 +4,6 @@
     
     <template #header>
         <div style="justify-items: legacy right;padding-left: 10px;">
-            </v-switch>
             <v-tooltip color="black" top>
                 <template #activator="{ on, attrs }">
                 <div
@@ -302,6 +301,7 @@ export default {
         await this.updateAll();
     },
   methods: {
+    
     resetActiveButton() {
         this.$nextTick(() => {
           this.activeButton = null
@@ -330,11 +330,13 @@ export default {
       return value ? 'True' : 'False';
     },
     async messagetoollap(timeanot,ex,projId){
+        console.log("messagetoollap called")
         ex.time_annotated = timeanot
         await this.updateTime(projId,ex)
         
     },
     async updateAll(){
+        console.log("updating all called")
       for (const [exampleid, timeanot] of Object.entries(this.AnotDict)) {
         const ex = await this.fetchExampleById(this.projectId,exampleid);
         ex.time_annotated = timeanot;

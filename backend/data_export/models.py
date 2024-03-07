@@ -22,7 +22,8 @@ class ExportedExample(Example):
     objects = ExportedExampleManager()
 
     def to_dict(self, is_text_project=True) -> Dict[str, Any]:
-        print(self)
+        print(self.time_annotated)
+        print(self.text)
         return {"id": self.id, DATA: self.text if is_text_project else self.upload_name,"annotated_time":self.time_annotated,"confidence":self.confidence,"changed":self.changed, **self.meta}
 
     class Meta:
@@ -57,6 +58,7 @@ class ExportedSpan(Span):
             "label": self.label.text,
             "start_offset": self.start_offset,
             "end_offset": self.end_offset,
+            "annotated_time" : self.time_annotated
         }
 
     def to_tuple(self):

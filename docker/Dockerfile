@@ -8,6 +8,7 @@ ENV PUBLIC_PATH="/static/_nuxt/"
 # hadolint ignore=DL3008
 RUN apt-get update \
  && apt-get install -y --no-install-recommends git python3 make g++ ca-certificates \
+ && git config --global core.autocrlf false \
  && git config --global url."https://github.com/".insteadOf git://github.com/ \
  && yarn install --network-timeout 1000000 \
  && yarn build \
@@ -57,6 +58,7 @@ RUN mkdir /data \
 COPY --from=backend-builder /usr/local/lib/python3.8/site-packages /usr/local/lib/python3.8/site-packages
 COPY --from=backend-builder /usr/local/bin/celery /usr/local/bin/celery
 COPY --from=backend-builder /usr/local/bin/gunicorn /usr/local/bin/gunicorn
+COPY --chown=doccano:doccano tools/ /opt/bin/
 
 COPY --chown=doccano:doccano . /doccano
 WORKDIR /doccano/backend

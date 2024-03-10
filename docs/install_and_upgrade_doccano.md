@@ -175,7 +175,7 @@ docker build -t doccano:latest . -f docker/Dockerfile
 ```
 
 ```bash
-docker build -t doccano:latest . -f docker/Dockerfile.nginx
+docker build -t doccano:frontend . -f docker/Dockerfile.nginx
 ```
 ### Use Flower
 
